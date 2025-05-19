@@ -12,31 +12,66 @@
     />
   </head>
   <body>
-    <div class="container-fluid">
+    <div class="container-fluid mt-5">
       <div class="row">
         <div class="col-md-12 bg-light">
-          <form
-            action=""
-            class="p-3"
-            style="justify-content: space-evenly"
-          ></form>
-          <div style="display: flex; justify-content: space-around">
-            <input
-              type="text"
-              name="about"
-              class="btn btn-dark"
-              placeholder="အကြောင်းအရာ"
-            />
-            <input type="date" name="date" class="btn btn-dark" />
-            <select name="type" class="btn btn-dark">
-              <option value="income">ဝင်ငွေ</option>
-              <option value="outcome">ထွက်ငွေ</option>
-            </select>
-            <input
-              type="submit"
-              value="စာရင်းသွင်းမယ်"
-              class="btn btn-success"
-            />
+          <div class="card card-body">
+            <form action="">
+              <input
+                type="text"
+                class="btn btn-dark text-white m-3"
+                name="about"
+                placeholder="Type content..."
+              />
+              <input
+                type="date"
+                class="btn btn-dark text-white m-3"
+                name="date"
+              />
+              <select name="type" id="" class="btn btn-dark text-white m-3">
+                <option value="income">Income</option>
+                <option value="outcome">Outcome</option>
+              </select>
+              <input type="submit" value="Submit" class="btn btn-success m-3" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-4 m-0">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card card-body">
+            <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between">
+                <div class="">
+                  Pocket Money <br />
+                  <small class="text-muted">19-5-2025</small>
+                </div>
+                <small class="text text-success fw-bold align-self-center"
+                  >+ 10000 MMK</small
+                >
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <div class="">
+                  Pay Bill <br />
+                  <small class="text-muted">19-5-2025</small>
+                </div>
+                <small class="text text-danger fw-bold align-self-center"
+                  >- 3000 MMK</small
+                >
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <div class="">
+                  Bus Fee <br />
+                  <small class="text-muted">19-5-2025</small>
+                </div>
+                <small class="text text-danger fw-bold align-self-center"
+                  >- 400 MMK</small
+                >
+              </li>
+            </ul>
           </div>
         </div>
       </div>
