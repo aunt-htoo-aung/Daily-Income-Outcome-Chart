@@ -82,10 +82,40 @@
                 <small class="text-success me-5">Income : + 10000 MMK</small>
                 <small class="text-danger">Outcome : - 3400 MMK</small>
               </div>
+              <hr class="p-0 m-0" />
+              <div class="mt-3">
+                <canvas id="inout"></canvas>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const ctx = document.getElementById("inout");
+
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          datasets: [
+            {
+              label: "# of Votes",
+              data: [12, 19, 3, 5, 2, 3],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            Y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    </script>
   </body>
 </html>
