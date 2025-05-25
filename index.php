@@ -16,6 +16,45 @@
   }
   $total_income = 0;
   $total_outcome = 0;
+
+  $select_sql = "
+  SELECT 
+    DATE_FORMAT(date, '%d-%m-%Y') AS formatted_date, 
+    type, 
+    SUM(amount) AS total 
+  FROM inout_table 
+  GROUP BY formatted_date, type 
+  ORDER BY STR_TO_DATE(formatted_date, '%d-%m-%Y')
+";
+
+  $result = $conn->query($select_sql);
+
+  $incomeData = [];
+  $outcomeData = [];
+  $dates = [];
+
+  if ($result) {
+    $groupedData = [];
+
+    while ($row = $result->fetch_assoc()) {
+      $date = $row['formatted_date'];
+      $type = $row['type'];
+      $total = (int)$row['total'];
+
+      if (!isset($groupedData[$date])) {
+        $groupedData[$date] = ['Income' => 0, 'Outcome' => 0];
+      }
+
+      $groupedData[$date][$type] = $total;
+    }
+
+    foreach ($groupedData as $date => $values) {
+      $dates[] = $date;
+      $incomeData[] = $values['Income'];
+      $outcomeData[] = $values['Outcome'];
+    }
+  }
+
   ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -135,6 +174,14 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      const chartLabels = <?= json_encode($dates) ?>;
+      const chartIncome = <?= json_encode($incomeData) ?>;
+      const chartOutcome = <?= json_encode($outcomeData) ?>;
+    </script>
+    <script src="script.js"></script>
+
     <script src="script.js"></script>
   </body>
 
