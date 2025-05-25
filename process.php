@@ -1,8 +1,10 @@
 <?php
-
+session_start();
 require_once "connect.php";
-
+$submit_status = false;
+$status = false;
 if (isset($_POST['submit'])) {
+    $submit_status = true;
     $content = $_POST['about'];
     $type = $_POST['type'];
     $amount = $_POST['amount'];
@@ -14,11 +16,14 @@ if (isset($_POST['submit'])) {
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
-            echo "Data inserted successfully!";
+            $status = true;
+            header("location:index.php");
         } else {
-            echo "Insert failed.";
+            $status = false;
+            header("location:index.php");
         }
-
+        $_SESSION['submit_status'] = $submit_status;
+        $_SESSION['status'] = $status;
         $stmt->close();
         $conn->close();
     }
